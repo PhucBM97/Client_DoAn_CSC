@@ -1,0 +1,11 @@
+﻿@model Client_DoAn_CSC.Models.SanPhamModel.Output.SanPhamThuongHieu
+@{
+    ViewData["Title"] = "DSSPThuongHieu";
+}
+
+
+@foreach (var item in Model.DanhSachSanPham)
+{
+    <div>@item.SanphamTen</div>
+}
+

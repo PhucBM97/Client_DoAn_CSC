@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -13,6 +13,8 @@ namespace Client_DoAn_CSC
     {
         public static void Main(string[] args)
         {
+            // gốc của port API
+            //Utilities.ServiceURL = "https://localhost:44393/";
             CreateHostBuilder(args).Build().Run();
         }
 
