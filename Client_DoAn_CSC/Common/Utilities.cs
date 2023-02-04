@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using System.Net.Mail;
+using System.Net.Mime;
 using System.Threading.Tasks;
 
 namespace Client_DoAn_CSC.Common
@@ -11,6 +13,8 @@ namespace Client_DoAn_CSC.Common
     public class Utilities
     {
         public static string ServiceURL { get; set; }
+
+        //
 
         public static T SendDataRequest<T>(string APIUrl, object input = null)
         {
@@ -24,6 +28,60 @@ namespace Client_DoAn_CSC.Common
             if (response.IsSuccessStatusCode)
                 kq = response.Content.ReadFromJsonAsync<T>().Result;
             return kq;
+        }
+        public class PropertyCopier<TParent, TChild> where TParent : class
+                                    where TChild : class
+        {
+            public static void Copy(TParent parent, TChild child)
+            {
+                var parentProperties = parent.GetType().GetProperties();
+                var childProperties = child.GetType().GetProperties();
+
+                foreach (var parentProperty in parentProperties)
+                {
+                    if (parentProperty.Name.ToLower() == "id") continue;
+                    foreach (var childProperty in childProperties)
+                    {
+                        if (parentProperty.Name == childProperty.Name &&
+                            parentProperty.PropertyType == childProperty.PropertyType &&
+                            childProperty.SetMethod != null)
+                        {
+                            if (parentProperty.GetValue(parent) != null)
+                                childProperty.SetValue(child, parentProperty.GetValue(parent));
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        public static bool SendMail(string subject, string message, string email)
+        {
+            try
+            {
+                var mailMsg = new MailMessage();
+
+                mailMsg.To.Add(new MailAddress(email, ""));
+                mailMsg.From = new MailAddress("info@csccinema.vn", "CSC Cinema");
+
+                mailMsg.Subject = subject;
+                mailMsg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(message, null,
+                                                                           MediaTypeNames.Text.Plain));
+                mailMsg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(message, null,
+                                                                            MediaTypeNames.Text.Html));
+
+                var smtpClient = new SmtpClient("smtp.gmail.com", 587);
+                var credentials = new System.Net.NetworkCredential("info@csccinema.vn", "123456");
+                smtpClient.UseDefaultCredentials = false;
+                smtpClient.Credentials = credentials;
+                smtpClient.EnableSsl = true;
+
+                smtpClient.Send(mailMsg);
+                return true;
+            }
+            catch (System.Exception)
+            {
+                return false;
+            }
         }
     }
 }
