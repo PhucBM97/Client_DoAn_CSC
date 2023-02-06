@@ -5,10 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Manage\Controllers\" />
     <Folder Include="Areas\Manage\Data\" />
-    <Folder Include="Areas\Manage\Models\" />
-    <Folder Include="Areas\Manage\Views\" />
     <Folder Include="wwwroot\font\" />
     <Folder Include="wwwroot\themes\less\oregional\" />
   </ItemGroup>

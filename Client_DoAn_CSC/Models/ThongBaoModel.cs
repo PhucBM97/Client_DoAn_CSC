@@ -7,7 +7,7 @@ namespace Client_DoAn_CSC.Models
 {
     public class ThongBaoModel
     {
-        public int Maso { get; set; }
-        public string Noidung { get; set; }
+        public int MaSo { get; set; }
+        public string NoiDung { get; set; }
     }
 }
