@@ -43,6 +43,11 @@ namespace Client_DoAn_CSC.Models
             }
             public class DangKyThanhVien : ThanhVienBase { }
 
+            public class ThongTinTHanhVien
+            {
+                public int Id { get; set; }
+            }
+
             public class ThayDoiMatKhau
             {
                 public int Id { get; set; }
@@ -67,6 +72,7 @@ namespace Client_DoAn_CSC.Models
             }
             public class DangNhap : ThanhVienBase
             {
+                public string AccessToken { get; set; }
                 public string ThongBao { get; set; }
             }
         }

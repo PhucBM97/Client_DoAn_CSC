@@ -1,0 +1,38 @@
+﻿@model List<Client_DoAn_CSC.Models.SanPhamModel.Output.ThongTinSanPham>
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+<div class="tab-pane  active" id="blockView">
+    <ul class="thumbnails">
+
+        @foreach (var SP in Model)
+        {
+            <li class="span3">
+                <div class="thumbnail">
+                    <a asp-controller="SanPham" asp-action="TTSP" asp-route-id="@SP.SanphamId"><img src="data:images/png;base64, @SP.SanphamHinh" alt="@SP.SanphamTen"></a>
+                    <div class="caption">
+                        <h5>@SP.SanphamTen </h5>
+                        <p>
+                            @{ var cn = SP.Chucnang;
+                                string A = cn.BoNhoLuuTru;
+                                string B = "CPU";
+                                var Cat = A.Split(' ');
+                                B += $" {Cat[5]} {Cat[6]} {Cat[12]}";
+                                string C = " RAM ";
+                                C += Cat[Array.IndexOf(Cat, "RAM") + 5] + " GB";
+                                B = B + C;
+                                <span>, </span><a href="#">
+                                    @B
+                                </a>
+                            }
+                        </p>
+                        <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">@SP.SanphamGia</a></h4>
+                    </div>
+                </div>
+                
+
+            </li>
+        }
+
+        </ul>
+    <hr class="soft">
+</div>
+

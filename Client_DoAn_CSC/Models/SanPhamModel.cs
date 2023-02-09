@@ -44,13 +44,18 @@ namespace Client_DoAn_CSC.Models
 
         public class Output
         {
+            
             public class ThongTinSanPham : SanPhamBase
             {
+                public ChucnangModel.ChucnangBase Chucnang { get; set; }
+                public KhuyenMaiModel.KhuyenMaiBase KhuyenMai { get; set; }
                 public ThuongHieuModel.ThuongHieuBase ThuongHieu { get; set; }
                 // cần gì thêm vô
                 public ThongTinSanPham()
                 {
+                    Chucnang = new();
                     ThuongHieu = new();
+                    KhuyenMai = new();
                 }
             }
             public class SanPhamThuongHieu
