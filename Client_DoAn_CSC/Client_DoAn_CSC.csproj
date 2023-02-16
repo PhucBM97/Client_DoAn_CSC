@@ -5,9 +5,25 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Manage\Controllers\" />
+    <Compile Remove="Areas\**" />
+    <Content Remove="Areas\**" />
+    <EmbeddedResource Remove="Areas\**" />
+    <None Remove="Areas\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Areas\Manage\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Manage\Controllers\DonhangController.cs" />
+    <Compile Include="Areas\Manage\Controllers\HinhController.cs" />
+    <Compile Include="Areas\Manage\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Manage\Controllers\KhuyenmaiController.cs" />
+    <Compile Include="Areas\Manage\Controllers\SanphamController.cs" />
+    <Compile Include="Areas\Manage\Models\Authorization\AjaxExtension.cs" />
+    <Compile Include="Areas\Manage\Models\Authorization\Authorize.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Areas\Manage\Data\" />
-    <Folder Include="Areas\Manage\Models\" />
     <Folder Include="Areas\Manage\Views\" />
     <Folder Include="wwwroot\font\" />
     <Folder Include="wwwroot\themes\less\oregional\" />

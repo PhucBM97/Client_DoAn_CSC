@@ -61,7 +61,7 @@ namespace Client_DoAn_CSC.Common
                 var mailMsg = new MailMessage();
 
                 mailMsg.To.Add(new MailAddress(email, ""));
-                mailMsg.From = new MailAddress("info@csccinema.vn", "CSC Cinema");
+                mailMsg.From = new MailAddress("shopptdidong@gmail.com", "Tinh Nguyen");
 
                 mailMsg.Subject = subject;
                 mailMsg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(message, null,
@@ -70,7 +70,7 @@ namespace Client_DoAn_CSC.Common
                                                                             MediaTypeNames.Text.Html));
 
                 var smtpClient = new SmtpClient("smtp.gmail.com", 587);
-                var credentials = new System.Net.NetworkCredential("info@csccinema.vn", "123456");
+                var credentials = new System.Net.NetworkCredential("shopptdidong@gmail.com", "Tinh29740");
                 smtpClient.UseDefaultCredentials = false;
                 smtpClient.Credentials = credentials;
                 smtpClient.EnableSsl = true;

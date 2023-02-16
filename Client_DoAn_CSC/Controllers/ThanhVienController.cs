@@ -16,16 +16,26 @@ namespace Client_DoAn_CSC.Controllers
         {
             return View();
         }
-        public IActionResult DangNhap(string username, string password, bool remember = false)
-        {
-            var input = new ThanhVienModel.Input.DangNhap
-            {
-                Email = username,
-                MatKhau = password
-            };
-            var thanhvien = Utilities.SendDataRequest<ThanhVienModel.Output.DangNhap>(DataAPI.ThanhVien.DangNhap, input);
-            return RedirectToAction("Index", "Home");
-        }
+        //public IActionResult DangNhap(string username, string password, bool remember = false)
+        //{
+        //    if(username ==null) username = "";
+        //    if(password == null) password = "";
+        //    var input = new ThanhVienModel.Input.DangNhap
+        //    {
+        //        Email = username,
+        //        MatKhau = password
+        //    };
+        //    var thanhvien = Utilities.SendDataRequest<ThanhVienModel.Output.DangNhap>(ConstantValues.User.DangNhap, input);
+        //    HttpContext.Session.Remove("ThanhVien");
+        //    if (thanhvien != null)
+        //    {
+        //        if (thanhvien.Id > 0)
+        //        {
+        //            bool logined = Login
+        //        }
+        //    }
+        //    return RedirectToAction("Index", "Home");
+        //}
         //
         public IActionResult DangKy()
         {
@@ -35,7 +45,7 @@ namespace Client_DoAn_CSC.Controllers
         [HttpPost]
         public IActionResult DangKy(ThanhVienModel.Output.ThongTinThanhVien thanhvien)
         {
-            if(DateTime.Today.Year - thanhvien.NgaySinh.Year < 13)
+            if(DateTime.Today.Year - thanhvien.Ngaysinh.Year < 13)
             {
                 ViewData["ThongBaoDangKy"] = "Dưới 13 tuổi không thể đăng ký";
             }
@@ -46,11 +56,11 @@ namespace Client_DoAn_CSC.Controllers
                     var input = new ThanhVienModel.Input.DangKyThanhVien();
                     Utilities.PropertyCopier<ThanhVienModel.Output.ThongTinThanhVien, ThanhVienModel.Input.DangKyThanhVien>.Copy(thanhvien, input);
 
-                    var tb = Utilities.SendDataRequest<ThongBaoModel>(DataAPI.ThanhVien.DangKy, input);
+                    var tb = Utilities.SendDataRequest<ThongBaoModel>(ConstantValues.User.ThemNhanVien, input);
 
                     if (tb.Maso == 0)
                     {
-                        thanhvien.Id = int.Parse(tb.Noidung);
+                        thanhvien.Idkhachhang = int.Parse(tb.Noidung);
                         TempData["EmailDangKy"] = thanhvien.Email;
                         var code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(thanhvien.Email));
                         //tạo link xác nhận
@@ -81,7 +91,7 @@ namespace Client_DoAn_CSC.Controllers
             {
                 Email = email
             };
-            var tb = Utilities.SendDataRequest<ThongBaoModel>(DataAPI.ThanhVien.KichHoatTaiKhoan, input);
+            var tb = Utilities.SendDataRequest<ThongBaoModel>(ConstantValues.User.KichHoat, input);
             if (tb.Maso == 0 )
             {
                 ViewData["ThongBaoKichHoat"] = "Thành công";

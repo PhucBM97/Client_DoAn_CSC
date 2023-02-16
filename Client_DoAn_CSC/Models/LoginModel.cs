@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace QLRapChieuPhim.Models
+namespace Client_DoAn_CSC.Models
 {
     public class LoginModel
     {

@@ -1,11 +1,13 @@
 ﻿using Client_DoAn_CSC.Common;
 using Client_DoAn_CSC.Models;
 using Microsoft.AspNetCore.Mvc;
-using QLRapChieuPhim.Common;
+using Client_DoAn_CSC.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Client_DoAn_CSC.Areas.Manage.Models.Authorization;
+using Client_DoAn_CSC.DTO;
 
 namespace Client_DoAn_CSC.Controllers
 {
@@ -33,8 +35,8 @@ namespace Client_DoAn_CSC.Controllers
         }
         public IActionResult TTSP(int id)
         {
-            //if (HttpContext.Session.Get<ThanhVienModel.Output.ThongTinThanhVien>("ThanhVien") == null)
-            //    return RedirectToAction("Index", "Home");
+            if (HttpContext.Session.Get<ThanhVienModel.Output.ThongTinThanhVien>("ThanhVien") == null)
+                return RedirectToAction("Index", "Home");
 
             if (id > 0)
             {
@@ -59,7 +61,25 @@ namespace Client_DoAn_CSC.Controllers
             ViewData["SanPham"] = SP;
             return View(SP);
         }
+        [Authorize]
+        public IActionResult MuaDonHang(int id, string ngaydat)
+        {
+            if (HttpContext.Session.Get<ThanhVienModel.Output.ThongTinThanhVien>("ThanhVien") == null)
+                return RedirectToAction("Index", "Home");
+            DateTime NgayDat = DateTime.Today.Date;
+            if (!string.IsNullOrEmpty(ngaydat)) DateTime.TryParse(ngaydat, out NgayDat);
+                ViewData["NgayDat"] = NgayDat;
+                var input_donhang = new DonhangModel.Input.DocThongTinDonHang { Id = id };
+                var donhang = Utilities.SendDataRequest<DonhangModel.Output.ThongTinDonHang>(ConstantValues.Donhang.TTDH, input_donhang);
+                if (donhang == null || string.IsNullOrEmpty(donhang.Ten)) return RedirectToAction("Index", "Home");
+                else
+                ViewData["Donhang"] = donhang;
+            return View(donhang);
+                
+            
+        }
+    }
 
         
-    }
+    
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace QLRapChieuPhim.Common
+namespace Client_DoAn_CSC.Common
 {
     public static class SessionExtensions
     {
