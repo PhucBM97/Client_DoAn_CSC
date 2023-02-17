@@ -1,17 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DoAn_CSC_API.DTO
+namespace Client_DoAn_CSC.Models
 {
     public class HinhModel
     {
         public class HinhBase
         {
+
             public int HinhId { get; set; }
+            [Display(Name = "Tên Banner")]
+            [Required(ErrorMessage="Tên phải khác rỗng")]
             public string Thumbnails { get; set; }
+            [Display(Name ="Đường dẫn file hình")]
             public string Carousel { get; set; }
+            [Display(Name ="Kích hoạt")]
             public bool KichHoat { get; set; }
             
         }
