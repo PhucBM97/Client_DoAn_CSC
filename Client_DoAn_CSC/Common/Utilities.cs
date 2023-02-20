@@ -19,7 +19,7 @@ namespace Client_DoAn_CSC.Common
         public static T SendDataRequest<T>(string APIUrl, object input = null)
         {
             HttpClient client = new();
-            client.BaseAddress = new Uri(ServiceURL);
+            client.BaseAddress = new Uri("https://localhost:44345/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 

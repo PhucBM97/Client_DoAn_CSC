@@ -1,0 +1,75 @@
+﻿@model SanPhamModel.Output.ThongTinSanPham
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+@{
+    ViewData["Title"] = "Thông tin Sản Phẩm";
+}
+<style>
+    .navbar ul.navbar-nav a.nav-link {
+        font-size: 16px;
+    }
+
+    main {
+        padding-top: 55px;
+    }
+
+    .movie {
+        border: 1px solid;
+        box-shadow: 5px 6px #888888;
+        padding: 20px;
+    }
+
+        .movie .page-heading {
+            margin-top: 10px !important;
+        }
+
+    .movie__info .movie__time {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .movie__images img {
+        max-height: 260px;
+    }
+</style>
+<!-- Main content -->
+<section class="container">
+    <div class="col-sm-12">
+        <div class="movie">
+            @if (Model != null && Model.SanphamId > 0)
+            {
+                <h2 class="page-heading">@Model.SanphamTen</h2>
+                <div class="movie__info">
+                    <div class="col-sm-4 col-md-3 movie-mobile" style="width: auto;">
+                        <div class="movie__images">
+                            <img alt='' src="data:image/png;base64, @Model.SanphamHinh">
+                        </div>
+                    </div>
+                    <div class="col-sm-8 col-md-9">
+                        <p class="movie__time">Số lượng @(Model.SoLuong== 0 ? "Chưa cập nhật" : Model.SoLuong.ToString() + " cái")</p>
+                        
+                        
+                        <p class="movie__option"><strong>@Model.LoaiHangSP.Ten</strong></p>
+                        <p class="movie__option"><strong>Ngày sản xuất: </strong>@(Model.Ngaytao.ToString("yyyyMMdd").CompareTo("19000101") <=0 ? "Chưa cập nhật" : Model.Ngaytao.ToString("dd/MM/yyyy"))</p>
+                        <p class="movie__option"><strong>@Model.ThuongHieu.Thuonghieuten</strong></p>
+
+
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+                <p></p>
+                <p class="movie__describe">@Model.SanphamMota</p>
+                <p class="movie__describe">@Model.KhuyenMai.PhanTramGiam</p>
+            }
+            else
+            {
+                <h3>Thông tin sản phẩm không hợp lệ</h3>
+            }
+        </div>
+
+    </div>
+
+</section>
+
+<div class="clearfix"></div>

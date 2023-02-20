@@ -29,17 +29,17 @@ namespace Client_DoAn_CSC.Models
             [Display(Name = "Mô tả Sản phẩm")]
             public string SanphamMota { get; set; }
 
-            public int? ChucnangId { get; set; }
+            public int ChucnangId { get; set; }
             [Required(ErrorMessage = "Giá phải > 0")]
             [RegularExpression("([0-9]+)", ErrorMessage = "Giá phải là số nguyên")]
             [Range(1, int.MaxValue, ErrorMessage = "Giá > 0")]
             [Display(Name = "Giá ")]
-            public int? SanphamGia { get; set; }
+            public int SanphamGia { get; set; }
             [Display(Name = "Poster phim")]
             public string SanphamHinh { get; set; }
             [Display(Name = "Ngày tạo")]
                 
-            public DateTime? Ngaytao { get; set; }
+            public DateTime Ngaytao { get; set; }
 
             public DateTime NgayCapNhat { get; set; }
             [Required(ErrorMessage = "Phần trăm giảm giá không nhỏ hon 0")]
@@ -53,10 +53,10 @@ namespace Client_DoAn_CSC.Models
             public int SoLuong { get; set; }
             [Display(Name = "Thông tin")]
             public string ThongTin { get; set; }
-            public bool? TrangThai { get; set; }
+            public bool TrangThai { get; set; }
 
             public int Gia { get; set; }
-            public int? BaohanhId { get; set; }
+            public int BaohanhId { get; set; }
  
 
 

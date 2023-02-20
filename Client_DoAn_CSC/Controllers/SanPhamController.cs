@@ -1,7 +1,6 @@
 ﻿using Client_DoAn_CSC.Common;
 using Client_DoAn_CSC.Models;
 using Microsoft.AspNetCore.Mvc;
-using Client_DoAn_CSC.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,8 +34,8 @@ namespace Client_DoAn_CSC.Controllers
         }
         public IActionResult TTSP(int id)
         {
-            if (HttpContext.Session.Get<ThanhVienModel.Output.ThongTinThanhVien>("ThanhVien") == null)
-                return RedirectToAction("Index", "Home");
+            //if (HttpContext.Session.Get<ThanhVienModel.Output.ThongTinThanhVien>("ThanhVien") == null)
+            //    return RedirectToAction("Index", "Home");
 
             if (id > 0)
             {
