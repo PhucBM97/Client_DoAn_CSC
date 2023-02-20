@@ -10,8 +10,8 @@
                     <a asp-controller="SanPham" asp-action="TTSP" asp-route-id="@SP.SanphamId"><img src="data:images/png;base64, @SP.SanphamHinh" alt="@SP.SanphamTen"></a>
                     <div class="caption">
                         <h5>@SP.SanphamTen </h5>
-                        <p>
-                            @{ var cn = SP.Chucnang;
+                        @*<p>
+                            @{ var cn = SP.;
                                 string A = cn.BoNhoLuuTru;
                                 string B = "CPU";
                                 var Cat = A.Split(' ');
@@ -23,7 +23,7 @@
                                     @B
                                 </a>
                             }
-                        </p>
+                        </p>*@
                         <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">@SP.SanphamGia</a></h4>
                     </div>
                 </div>
